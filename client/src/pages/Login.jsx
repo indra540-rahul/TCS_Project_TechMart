@@ -52,8 +52,8 @@ const Login = () => {
   const [shopperMode, setShopperMode] = useState("login");
 
   const [adminForm, setAdminForm] = useState({
-    email: "admin@techmart.com",
-    password: "admin123",
+    email: "",
+    password: "",
     rememberMe: true
   });
 
@@ -65,7 +65,7 @@ const Login = () => {
     rememberMe: true
   });
 
-  const [recovery, setRecovery] = useState(createInitialRecovery("admin@techmart.com"));
+  const [recovery, setRecovery] = useState(createInitialRecovery(""));
   const [resetRequested, setResetRequested] = useState(false);
   const [recoveryHint, setRecoveryHint] = useState("");
   const [error, setError] = useState("");
@@ -237,9 +237,9 @@ const Login = () => {
 
   return (
     <div className="page-shell min-h-screen">
-      <div className="mx-auto max-w-7xl px-4 pb-8 pt-0 sm:px-6">
-        <PublicNavbar />
+      <PublicNavbar />
 
+      <div className="mx-auto max-w-7xl px-4 pb-8 pt-0 sm:px-6">
         <div className="relative mt-8 flex min-h-[calc(100vh-12rem)] items-center justify-center overflow-hidden py-8">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.18),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(14,165,233,0.18),transparent_28%)]" />
           <div className="pointer-events-none absolute left-10 top-10 h-32 w-32 rounded-full bg-blue-400/20 blur-3xl" />
@@ -339,7 +339,7 @@ const Login = () => {
                             setAdminForm({ ...adminForm, email: event.target.value })
                           }
                           className="w-full bg-transparent text-slate-900 outline-none"
-                          placeholder="admin@techmart.com"
+                          placeholder="Enter your email"
                         />
                       </AuthField>
 
@@ -633,8 +633,9 @@ const Login = () => {
           </div>
         </div>
 
-        <PublicFooter />
       </div>
+
+      <PublicFooter />
     </div>
   );
 };
