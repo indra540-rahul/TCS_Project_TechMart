@@ -6,12 +6,13 @@ const classifyDemand = (score) => {
 
 export const predictDemand = (product, relatedOrders = []) => {
   const historicalQuantity = relatedOrders.reduce((sum, order) => {
-    const item = order.items.find((entry) => String(entry.product) === String(product._id));
+    const items = Array.isArray(order?.items) ? order.items : [];
+    const item = items.find((entry) => String(entry?.product) === String(product?._id));
     return sum + (item?.quantity || 0);
   }, 0);
 
   const averageSoldQuantity = relatedOrders.length ? historicalQuantity / relatedOrders.length : 0;
-  const score = product.totalSold * 0.6 + averageSoldQuantity * 4;
+  const score = Number(product?.totalSold || 0) * 0.6 + averageSoldQuantity * 4;
 
   return {
     level: classifyDemand(score),

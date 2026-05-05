@@ -14,6 +14,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useAuth } from "../context/AuthContext";
 import { useCustomerAuth } from "../context/CustomerAuthContext";
+import PublicFooter from "../components/PublicFooter";
+import PublicNavbar from "../components/PublicNavbar";
 import api from "../services/api";
 import customerApi from "../services/customerApi";
 
@@ -234,397 +236,404 @@ const Login = () => {
   };
 
   return (
-    <div className="page-shell relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-8 sm:px-6">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.18),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(14,165,233,0.18),transparent_28%)]" />
-      <div className="pointer-events-none absolute left-10 top-10 h-32 w-32 rounded-full bg-blue-400/20 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-10 right-10 h-40 w-40 rounded-full bg-cyan-400/20 blur-3xl" />
+    <div className="page-shell min-h-screen">
+      <div className="mx-auto max-w-7xl px-4 pb-8 pt-0 sm:px-6">
+        <PublicNavbar />
 
-      <div className="relative grid w-full max-w-6xl overflow-hidden rounded-[2.2rem] border border-white/60 bg-white/90 shadow-[0_28px_80px_rgba(15,23,42,0.16)] backdrop-blur xl:grid-cols-[1.08fr_0.92fr]">
-        <div className="relative hidden overflow-hidden bg-[linear-gradient(135deg,#0E0559_0%,#09097e_40%,#00d4ff_100%)] px-8 py-10 text-white sm:px-10 sm:py-12 xl:block">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(125,211,252,0.24),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(96,165,250,0.24),transparent_34%)]" />
+        <div className="relative mt-8 flex min-h-[calc(100vh-12rem)] items-center justify-center overflow-hidden py-8">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.18),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(14,165,233,0.18),transparent_28%)]" />
+          <div className="pointer-events-none absolute left-10 top-10 h-32 w-32 rounded-full bg-blue-400/20 blur-3xl" />
+          <div className="pointer-events-none absolute bottom-10 right-10 h-40 w-40 rounded-full bg-cyan-400/20 blur-3xl" />
 
-          <div className="relative">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.26em] text-cyan-100">
-              <Sparkles size={14} />
-              {audienceCopy.badge}
-            </div>
+          <div className="relative grid w-full max-w-6xl overflow-hidden rounded-[2.2rem] border border-white/60 bg-white/90 shadow-[0_28px_80px_rgba(15,23,42,0.16)] backdrop-blur xl:grid-cols-[1.08fr_0.92fr]">
+            <div className="relative hidden overflow-hidden bg-[linear-gradient(135deg,#0E0559_0%,#09097e_40%,#00d4ff_100%)] px-8 py-10 text-white sm:px-10 sm:py-12 xl:block">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(125,211,252,0.24),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(96,165,250,0.24),transparent_34%)]" />
 
-            <h1 className="mt-6 max-w-xl text-4xl font-black leading-tight tracking-tight sm:text-5xl">
-              {audienceCopy.title}
-            </h1>
-
-            <p className="mt-5 max-w-xl text-base leading-7 text-sky-100/90">
-              {audienceCopy.description}
-            </p>
-
-            <div className="mt-10 grid gap-5 sm:grid-cols-2">
-              {audienceCopy.points.map((item, index) => (
-                <div
-                  key={item}
-                  className="group flex items-start gap-3 rounded-2xl border border-white/10 bg-[linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] p-5 transition backdrop-blur-md hover:scale-[1.02] hover:shadow-[0_20px_40px_rgba(0,0,0,0.25)]"
-                >
-                  <span
-                    className={`mt-1 flex h-10 w-10 items-center justify-center rounded-full shadow-inner ${
-                      index % 4 === 0
-                        ? "bg-gradient-to-br from-cyan-400 to-blue-500 text-white"
-                        : index % 4 === 1
-                          ? "bg-gradient-to-br from-purple-400 to-indigo-500 text-white"
-                          : index % 4 === 2
-                            ? "bg-gradient-to-br from-emerald-400 to-teal-500 text-white"
-                            : "bg-gradient-to-br from-pink-400 to-rose-500 text-white"
-                    }`}
-                  >
-                    <ShieldCheck size={18} />
-                  </span>
-                  <p className="text-sm font-medium leading-6 text-white/90">{item}</p>
+              <div className="relative">
+                <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.26em] text-cyan-100">
+                  <Sparkles size={14} />
+                  {audienceCopy.badge}
                 </div>
-              ))}
-            </div>
-          </div>
-        </div>
 
-        <div className="bg-white px-6 py-8 sm:px-8 sm:py-10 lg:px-10">
-          <div className="relative inline-flex w-full max-w-sm rounded-full bg-slate-100 p-1 shadow-inner">
-            <div
-              className={`absolute bottom-1 top-1 w-1/2 rounded-full bg-[linear-gradient(135deg,#0096D1,#48E03A)] shadow-[0_6px_18px_rgba(14,165,233,0.28)] transition-all duration-300 ${
-                portal === "admin" ? "left-1" : "left-1/2"
-              }`}
-            />
+                <h1 className="mt-6 max-w-xl text-4xl font-black leading-tight tracking-tight sm:text-5xl">
+                  {audienceCopy.title}
+                </h1>
 
-            <button
-              type="button"
-              onClick={() => switchPortal("admin")}
-              className={`relative z-10 w-1/2 rounded-full px-4 py-2 text-sm font-semibold transition ${
-                portal === "admin" ? "text-white" : "text-slate-600 hover:text-slate-900"
-              }`}
-            >
-              Admin Access
-            </button>
-
-            <button
-              type="button"
-              onClick={() => switchPortal("customer")}
-              className={`relative z-10 w-1/2 rounded-full px-4 py-2 text-sm font-semibold transition ${
-                portal === "customer" ? "text-white" : "text-slate-600 hover:text-slate-900"
-              }`}
-            >
-              Shopper Access
-            </button>
-          </div>
-
-          {portal === "admin" ? (
-            <>
-              <div className="mt-7">
-                <h2 className="text-3xl font-black tracking-tight text-zinc-950">
-                  Welcome back
-                </h2>
-                <p className="mt-2 text-sm leading-6 text-zinc-500">
-                  Sign in with your admin or manager account. Use recovery if you
-                  need a one-time code by email or phone.
+                <p className="mt-5 max-w-xl text-base leading-7 text-sky-100/90">
+                  {audienceCopy.description}
                 </p>
-              </div>
-
-              {mode === "login" ? (
-                <form onSubmit={handleAdminLogin} className="mt-8 space-y-5">
-                  <AuthField label="Email" icon={Mail}>
-                    <input
-                      type="email"
-                      value={adminForm.email}
-                      onChange={(event) =>
-                        setAdminForm({ ...adminForm, email: event.target.value })
-                      }
-                      className="w-full bg-transparent text-slate-900 outline-none"
-                      placeholder="admin@techmart.com"
-                    />
-                  </AuthField>
-
-                  <PasswordField
-                    label="Password"
-                    value={adminForm.password}
-                    onChange={(event) =>
-                      setAdminForm({ ...adminForm, password: event.target.value })
-                    }
-                    show={showPassword}
-                    setShow={setShowPassword}
-                  />
-
-                  <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                    <label className="flex items-center gap-3 text-sm font-medium text-slate-600">
-                      <input
-                        type="checkbox"
-                        checked={adminForm.rememberMe}
-                        onChange={(event) =>
-                          setAdminForm({
-                            ...adminForm,
-                            rememberMe: event.target.checked
-                          })
-                        }
-                        className="h-4 w-4 rounded border-slate-300 text-blue-600"
-                      />
-                      Remember me
-                    </label>
-
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setMode("recover");
-                        resetRecoveryState(adminForm.email);
-                      }}
-                      className="text-sm font-semibold text-blue-700 transition hover:text-blue-800"
+                <div className="mt-10 grid gap-5 sm:grid-cols-2">
+                  {audienceCopy.points.map((item, index) => (
+                    <div
+                      key={item}
+                      className="group flex items-start gap-3 rounded-2xl border border-white/10 bg-[linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] p-5 transition backdrop-blur-md hover:scale-[1.02] hover:shadow-[0_20px_40px_rgba(0,0,0,0.25)]"
                     >
-                      Forgot password?
-                    </button>
-                  </div>
-
-                  {error && <ErrorBanner error={error} />}
-
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full rounded-2xl bg-[linear-gradient(90deg,#170F59_0%,#101091_35%,#00D4FF_100%)] px-4 py-3.5 font-semibold text-white shadow-[0_20px_35px_rgba(15,23,42,0.18)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
-                  >
-                    {loading ? "Signing in..." : "Login to Dashboard"}
-                  </button>
-                </form>
-              ) : (
-                <RecoveryPanel
-                  recovery={recovery}
-                  setRecovery={setRecovery}
-                  resetRequested={resetRequested}
-                  recoveryHint={recoveryHint}
-                  loading={loading}
-                  error={error}
-                  onSubmit={resetRequested ? handlePasswordReset : handleRecoveryRequest}
-                  onResetRequest={() => resetRecoveryState(adminForm.email)}
-                  onBackToSignIn={() => {
-                    setMode("login");
-                    setError("");
-                  }}
-                  showNewPassword={showNewPassword}
-                  setShowNewPassword={setShowNewPassword}
-                  showConfirmPassword={showConfirmPassword}
-                  setShowConfirmPassword={setShowConfirmPassword}
-                />
-              )}
-            </>
-          ) : (
-            <>
-              <div className="mt-7">
-                <h2 className="text-3xl font-black tracking-tight text-zinc-950">
-                  Customer sign in
-                </h2>
-                <p className="mt-2 text-sm leading-6 text-zinc-500">
-                  Sign in as a shopper, create a new account, or recover access. After
-                  login, you will land on the home page ready to shop.
-                </p>
+                      <span
+                        className={`mt-1 flex h-10 w-10 items-center justify-center rounded-full shadow-inner ${
+                          index % 4 === 0
+                            ? "bg-gradient-to-br from-cyan-400 to-blue-500 text-white"
+                            : index % 4 === 1
+                              ? "bg-gradient-to-br from-purple-400 to-indigo-500 text-white"
+                              : index % 4 === 2
+                                ? "bg-gradient-to-br from-emerald-400 to-teal-500 text-white"
+                                : "bg-gradient-to-br from-pink-400 to-rose-500 text-white"
+                        }`}
+                      >
+                        <ShieldCheck size={18} />
+                      </span>
+                      <p className="text-sm font-medium leading-6 text-white/90">{item}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
+            </div>
 
-              <div className="relative mt-7 inline-flex w-full max-w-sm rounded-full bg-slate-100 p-1 shadow-inner">
+            <div className="bg-white px-6 py-8 sm:px-8 sm:py-10 lg:px-10">
+              <div className="relative inline-flex w-full max-w-sm rounded-full bg-slate-100 p-1 shadow-inner">
                 <div
-                  className={`absolute bottom-1 top-1 rounded-full bg-[linear-gradient(135deg,#0f172a,#1d4ed8)] transition-all duration-300 ${
-                    shopperMode === "login"
-                      ? "left-1 w-1/2"
-                      : shopperMode === "register"
-                        ? "left-1/2 w-1/2"
-                        : "left-1 w-1/2"
+                  className={`absolute bottom-1 top-1 w-1/2 rounded-full bg-[linear-gradient(135deg,#0096D1,#48E03A)] shadow-[0_6px_18px_rgba(14,165,233,0.28)] transition-all duration-300 ${
+                    portal === "admin" ? "left-1" : "left-1/2"
                   }`}
                 />
-                {[
-                  { key: "login", label: "Sign In" },
-                  { key: "register", label: "Sign Up" }
-                ].map((item) => (
-                  <button
-                    key={item.key}
-                    type="button"
-                    onClick={() => {
-                      setShopperMode(item.key);
-                      setError("");
-                    }}
-                    className={`relative z-10 w-1/2 rounded-full px-4 py-2 text-sm font-semibold ${
-                      shopperMode === item.key ? "text-white" : "text-slate-600"
-                    }`}
-                  >
-                    {item.label}
-                  </button>
-                ))}
+
+                <button
+                  type="button"
+                  onClick={() => switchPortal("admin")}
+                  className={`relative z-10 w-1/2 rounded-full px-4 py-2 text-sm font-semibold transition ${
+                    portal === "admin" ? "text-white" : "text-slate-600 hover:text-slate-900"
+                  }`}
+                >
+                  Admin Access
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => switchPortal("customer")}
+                  className={`relative z-10 w-1/2 rounded-full px-4 py-2 text-sm font-semibold transition ${
+                    portal === "customer" ? "text-white" : "text-slate-600 hover:text-slate-900"
+                  }`}
+                >
+                  Shopper Access
+                </button>
               </div>
 
-              {shopperMode === "login" && (
-                <form onSubmit={handleCustomerLogin} className="mt-8 space-y-5">
-                  <AuthField label="Email" icon={Mail}>
-                    <input
-                      type="email"
-                      value={customerForm.email}
-                      onChange={(event) =>
-                        setCustomerForm({ ...customerForm, email: event.target.value })
-                      }
-                      className="w-full bg-transparent text-slate-900 outline-none"
-                      placeholder="you@example.com"
-                    />
-                  </AuthField>
-
-                  <PasswordField
-                    label="Password"
-                    value={customerForm.password}
-                    onChange={(event) =>
-                      setCustomerForm({ ...customerForm, password: event.target.value })
-                    }
-                    show={showPassword}
-                    setShow={setShowPassword}
-                  />
-
-                  <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                    <label className="flex items-center gap-3 text-sm font-medium text-slate-600">
-                      <input
-                        type="checkbox"
-                        checked={customerForm.rememberMe}
-                        onChange={(event) =>
-                          setCustomerForm({
-                            ...customerForm,
-                            rememberMe: event.target.checked
-                          })
-                        }
-                        className="h-4 w-4 rounded border-slate-300 text-blue-600"
-                      />
-                      Remember me
-                    </label>
-
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setShopperMode("recover");
-                        resetRecoveryState(customerForm.email);
-                      }}
-                      className="text-sm font-semibold text-blue-700 transition hover:text-blue-800"
-                    >
-                      Forgot password?
-                    </button>
+              {portal === "admin" ? (
+                <>
+                  <div className="mt-7">
+                    <h2 className="text-3xl font-black tracking-tight text-zinc-950">
+                      Welcome back
+                    </h2>
+                    <p className="mt-2 text-sm leading-6 text-zinc-500">
+                      Sign in with your admin or manager account. Use recovery if you
+                      need a one-time code by email or phone.
+                    </p>
                   </div>
 
-                  {error && <ErrorBanner error={error} />}
+                  {mode === "login" ? (
+                    <form onSubmit={handleAdminLogin} className="mt-8 space-y-5">
+                      <AuthField label="Email" icon={Mail}>
+                        <input
+                          type="email"
+                          value={adminForm.email}
+                          onChange={(event) =>
+                            setAdminForm({ ...adminForm, email: event.target.value })
+                          }
+                          className="w-full bg-transparent text-slate-900 outline-none"
+                          placeholder="admin@techmart.com"
+                        />
+                      </AuthField>
 
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="flex w-full items-center justify-center gap-2 rounded-2xl bg-[linear-gradient(90deg,#07132d_0%,#163fbd_50%,#2563eb_100%)] px-4 py-3.5 font-semibold text-white shadow-[0_20px_35px_rgba(37,99,235,0.2)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
-                  >
-                    <ShoppingBag size={18} />
-                    {loading ? "Signing in..." : "Sign In and Shop"}
-                  </button>
+                      <PasswordField
+                        label="Password"
+                        value={adminForm.password}
+                        onChange={(event) =>
+                          setAdminForm({ ...adminForm, password: event.target.value })
+                        }
+                        show={showPassword}
+                        setShow={setShowPassword}
+                      />
 
-                  <p className="text-center text-sm text-slate-500">
-                    Don&apos;t have an account?{" "}
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setShopperMode("register");
+                      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                        <label className="flex items-center gap-3 text-sm font-medium text-slate-600">
+                          <input
+                            type="checkbox"
+                            checked={adminForm.rememberMe}
+                            onChange={(event) =>
+                              setAdminForm({
+                                ...adminForm,
+                                rememberMe: event.target.checked
+                              })
+                            }
+                            className="h-4 w-4 rounded border-slate-300 text-blue-600"
+                          />
+                          Remember me
+                        </label>
+
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setMode("recover");
+                            resetRecoveryState(adminForm.email);
+                          }}
+                          className="text-sm font-semibold text-blue-700 transition hover:text-blue-800"
+                        >
+                          Forgot password?
+                        </button>
+                      </div>
+
+                      {error && <ErrorBanner error={error} />}
+
+                      <button
+                        type="submit"
+                        disabled={loading}
+                        className="w-full rounded-2xl bg-[linear-gradient(90deg,#170F59_0%,#101091_35%,#00D4FF_100%)] px-4 py-3.5 font-semibold text-white shadow-[0_20px_35px_rgba(15,23,42,0.18)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
+                      >
+                        {loading ? "Signing in..." : "Login to Dashboard"}
+                      </button>
+                    </form>
+                  ) : (
+                    <RecoveryPanel
+                      recovery={recovery}
+                      setRecovery={setRecovery}
+                      resetRequested={resetRequested}
+                      recoveryHint={recoveryHint}
+                      loading={loading}
+                      error={error}
+                      onSubmit={resetRequested ? handlePasswordReset : handleRecoveryRequest}
+                      onResetRequest={() => resetRecoveryState(adminForm.email)}
+                      onBackToSignIn={() => {
+                        setMode("login");
                         setError("");
                       }}
-                      className="font-semibold text-blue-700 transition hover:text-blue-800"
-                    >
-                      Create account
-                    </button>
-                  </p>
-                </form>
+                      showNewPassword={showNewPassword}
+                      setShowNewPassword={setShowNewPassword}
+                      showConfirmPassword={showConfirmPassword}
+                      setShowConfirmPassword={setShowConfirmPassword}
+                    />
+                  )}
+                </>
+              ) : (
+                <>
+                  <div className="mt-7">
+                    <h2 className="text-3xl font-black tracking-tight text-zinc-950">
+                      Customer sign in
+                    </h2>
+                    <p className="mt-2 text-sm leading-6 text-zinc-500">
+                      Sign in as a shopper, create a new account, or recover access. After
+                      login, you will land on the home page ready to shop.
+                    </p>
+                  </div>
+
+                  <div className="relative mt-7 inline-flex w-full max-w-sm rounded-full bg-slate-100 p-1 shadow-inner">
+                    <div
+                      className={`absolute bottom-1 top-1 rounded-full bg-[linear-gradient(135deg,#0f172a,#1d4ed8)] transition-all duration-300 ${
+                        shopperMode === "login"
+                          ? "left-1 w-1/2"
+                          : shopperMode === "register"
+                            ? "left-1/2 w-1/2"
+                            : "left-1 w-1/2"
+                      }`}
+                    />
+                    {[
+                      { key: "login", label: "Sign In" },
+                      { key: "register", label: "Sign Up" }
+                    ].map((item) => (
+                      <button
+                        key={item.key}
+                        type="button"
+                        onClick={() => {
+                          setShopperMode(item.key);
+                          setError("");
+                        }}
+                        className={`relative z-10 w-1/2 rounded-full px-4 py-2 text-sm font-semibold ${
+                          shopperMode === item.key ? "text-white" : "text-slate-600"
+                        }`}
+                      >
+                        {item.label}
+                      </button>
+                    ))}
+                  </div>
+
+                  {shopperMode === "login" && (
+                    <form onSubmit={handleCustomerLogin} className="mt-8 space-y-5">
+                      <AuthField label="Email" icon={Mail}>
+                        <input
+                          type="email"
+                          value={customerForm.email}
+                          onChange={(event) =>
+                            setCustomerForm({ ...customerForm, email: event.target.value })
+                          }
+                          className="w-full bg-transparent text-slate-900 outline-none"
+                          placeholder="you@example.com"
+                        />
+                      </AuthField>
+
+                      <PasswordField
+                        label="Password"
+                        value={customerForm.password}
+                        onChange={(event) =>
+                          setCustomerForm({ ...customerForm, password: event.target.value })
+                        }
+                        show={showPassword}
+                        setShow={setShowPassword}
+                      />
+
+                      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                        <label className="flex items-center gap-3 text-sm font-medium text-slate-600">
+                          <input
+                            type="checkbox"
+                            checked={customerForm.rememberMe}
+                            onChange={(event) =>
+                              setCustomerForm({
+                                ...customerForm,
+                                rememberMe: event.target.checked
+                              })
+                            }
+                            className="h-4 w-4 rounded border-slate-300 text-blue-600"
+                          />
+                          Remember me
+                        </label>
+
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setShopperMode("recover");
+                            resetRecoveryState(customerForm.email);
+                          }}
+                          className="text-sm font-semibold text-blue-700 transition hover:text-blue-800"
+                        >
+                          Forgot password?
+                        </button>
+                      </div>
+
+                      {error && <ErrorBanner error={error} />}
+
+                      <button
+                        type="submit"
+                        disabled={loading}
+                        className="flex w-full items-center justify-center gap-2 rounded-2xl bg-[linear-gradient(90deg,#07132d_0%,#163fbd_50%,#2563eb_100%)] px-4 py-3.5 font-semibold text-white shadow-[0_20px_35px_rgba(37,99,235,0.2)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
+                      >
+                        <ShoppingBag size={18} />
+                        {loading ? "Signing in..." : "Sign In and Shop"}
+                      </button>
+
+                      <p className="text-center text-sm text-slate-500">
+                        Don&apos;t have an account?{" "}
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setShopperMode("register");
+                            setError("");
+                          }}
+                          className="font-semibold text-blue-700 transition hover:text-blue-800"
+                        >
+                          Create account
+                        </button>
+                      </p>
+                    </form>
+                  )}
+
+                  {shopperMode === "register" && (
+                    <form onSubmit={handleCustomerRegister} className="mt-8 space-y-5">
+                      <AuthField label="Full Name" icon={UserRoundPlus}>
+                        <input
+                          value={customerForm.name}
+                          onChange={(event) =>
+                            setCustomerForm({ ...customerForm, name: event.target.value })
+                          }
+                          className="w-full bg-transparent text-slate-900 outline-none"
+                          placeholder="Enter your full name"
+                        />
+                      </AuthField>
+
+                      <AuthField label="Email" icon={Mail}>
+                        <input
+                          type="email"
+                          value={customerForm.email}
+                          onChange={(event) =>
+                            setCustomerForm({ ...customerForm, email: event.target.value })
+                          }
+                          className="w-full bg-transparent text-slate-900 outline-none"
+                          placeholder="you@example.com"
+                        />
+                      </AuthField>
+
+                      <AuthField label="Phone" icon={Phone}>
+                        <input
+                          value={customerForm.phone}
+                          onChange={(event) =>
+                            setCustomerForm({ ...customerForm, phone: event.target.value })
+                          }
+                          className="w-full bg-transparent text-slate-900 outline-none"
+                          placeholder="+91 98765 43210"
+                        />
+                      </AuthField>
+
+                      <PasswordField
+                        label="Create Password"
+                        value={customerForm.password}
+                        onChange={(event) =>
+                          setCustomerForm({ ...customerForm, password: event.target.value })
+                        }
+                        show={showPassword}
+                        setShow={setShowPassword}
+                      />
+
+                      <label className="flex items-center gap-3 text-sm font-medium text-slate-600">
+                        <input
+                          type="checkbox"
+                          checked={customerForm.rememberMe}
+                          onChange={(event) =>
+                            setCustomerForm({
+                              ...customerForm,
+                              rememberMe: event.target.checked
+                            })
+                          }
+                          className="h-4 w-4 rounded border-slate-300 text-blue-600"
+                        />
+                        Keep me signed in on this device
+                      </label>
+
+                      {error && <ErrorBanner error={error} />}
+
+                      <button
+                        type="submit"
+                        disabled={loading}
+                        className="flex w-full items-center justify-center gap-2 rounded-2xl bg-[linear-gradient(90deg,#07132d_0%,#163fbd_50%,#2563eb_100%)] px-4 py-3.5 font-semibold text-white shadow-[0_20px_35px_rgba(37,99,235,0.2)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
+                      >
+                        <UserRoundPlus size={18} />
+                        {loading ? "Creating account..." : "Create Customer Account"}
+                      </button>
+                    </form>
+                  )}
+
+                  {shopperMode === "recover" && (
+                    <RecoveryPanel
+                      recovery={recovery}
+                      setRecovery={setRecovery}
+                      resetRequested={resetRequested}
+                      recoveryHint={recoveryHint}
+                      loading={loading}
+                      error={error}
+                      onSubmit={resetRequested ? handlePasswordReset : handleRecoveryRequest}
+                      onResetRequest={() => resetRecoveryState(customerForm.email)}
+                      onBackToSignIn={() => {
+                        setShopperMode("login");
+                        setError("");
+                      }}
+                      showNewPassword={showNewPassword}
+                      setShowNewPassword={setShowNewPassword}
+                      showConfirmPassword={showConfirmPassword}
+                      setShowConfirmPassword={setShowConfirmPassword}
+                    />
+                  )}
+                </>
               )}
-
-              {shopperMode === "register" && (
-                <form onSubmit={handleCustomerRegister} className="mt-8 space-y-5">
-                  <AuthField label="Full Name" icon={UserRoundPlus}>
-                    <input
-                      value={customerForm.name}
-                      onChange={(event) =>
-                        setCustomerForm({ ...customerForm, name: event.target.value })
-                      }
-                      className="w-full bg-transparent text-slate-900 outline-none"
-                      placeholder="Enter your full name"
-                    />
-                  </AuthField>
-
-                  <AuthField label="Email" icon={Mail}>
-                    <input
-                      type="email"
-                      value={customerForm.email}
-                      onChange={(event) =>
-                        setCustomerForm({ ...customerForm, email: event.target.value })
-                      }
-                      className="w-full bg-transparent text-slate-900 outline-none"
-                      placeholder="you@example.com"
-                    />
-                  </AuthField>
-
-                  <AuthField label="Phone" icon={Phone}>
-                    <input
-                      value={customerForm.phone}
-                      onChange={(event) =>
-                        setCustomerForm({ ...customerForm, phone: event.target.value })
-                      }
-                      className="w-full bg-transparent text-slate-900 outline-none"
-                      placeholder="+91 98765 43210"
-                    />
-                  </AuthField>
-
-                  <PasswordField
-                    label="Create Password"
-                    value={customerForm.password}
-                    onChange={(event) =>
-                      setCustomerForm({ ...customerForm, password: event.target.value })
-                    }
-                    show={showPassword}
-                    setShow={setShowPassword}
-                  />
-
-                  <label className="flex items-center gap-3 text-sm font-medium text-slate-600">
-                    <input
-                      type="checkbox"
-                      checked={customerForm.rememberMe}
-                      onChange={(event) =>
-                        setCustomerForm({
-                          ...customerForm,
-                          rememberMe: event.target.checked
-                        })
-                      }
-                      className="h-4 w-4 rounded border-slate-300 text-blue-600"
-                    />
-                    Keep me signed in on this device
-                  </label>
-
-                  {error && <ErrorBanner error={error} />}
-
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="flex w-full items-center justify-center gap-2 rounded-2xl bg-[linear-gradient(90deg,#07132d_0%,#163fbd_50%,#2563eb_100%)] px-4 py-3.5 font-semibold text-white shadow-[0_20px_35px_rgba(37,99,235,0.2)] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
-                  >
-                    <UserRoundPlus size={18} />
-                    {loading ? "Creating account..." : "Create Customer Account"}
-                  </button>
-                </form>
-              )}
-
-              {shopperMode === "recover" && (
-                <RecoveryPanel
-                  recovery={recovery}
-                  setRecovery={setRecovery}
-                  resetRequested={resetRequested}
-                  recoveryHint={recoveryHint}
-                  loading={loading}
-                  error={error}
-                  onSubmit={resetRequested ? handlePasswordReset : handleRecoveryRequest}
-                  onResetRequest={() => resetRecoveryState(customerForm.email)}
-                  onBackToSignIn={() => {
-                    setShopperMode("login");
-                    setError("");
-                  }}
-                  showNewPassword={showNewPassword}
-                  setShowNewPassword={setShowNewPassword}
-                  showConfirmPassword={showConfirmPassword}
-                  setShowConfirmPassword={setShowConfirmPassword}
-                />
-              )}
-            </>
-          )}
+            </div>
+          </div>
         </div>
+
+        <PublicFooter />
       </div>
     </div>
   );

@@ -23,10 +23,22 @@ dotenv.config();
 connectDB();
 
 const app = express();
+const allowedOrigins = [
+  process.env.CLIENT_URL,
+  ...(process.env.CLIENT_URLS || "").split(",")
+]
+  .map((origin) => origin?.trim())
+  .filter(Boolean);
 
 app.use(
   cors({
-    origin: [process.env.CLIENT_URL, "http://localhost:5173"],
+    origin(origin, callback) {
+      if (!origin || allowedOrigins.includes(origin) || origin === "http://localhost:5173") {
+        return callback(null, true);
+      }
+
+      return callback(new Error("CORS origin not allowed"));
+    },
     credentials: true
   })
 );

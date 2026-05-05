@@ -83,3 +83,10 @@ The client consumes live APIs for:
 ## Build Verification
 
 The client has been production-built successfully with `npm run build`.
+
+## Deployment Notes
+
+- Vercel: use `client/` as the root directory and `dist` as the output directory
+- Netlify: use `client/` as the base directory and `client/dist` as the publish directory
+- Set `VITE_API_URL` to your Render backend URL ending in `/api`
+- SPA rewrites are included in `vercel.json` and `netlify.toml`

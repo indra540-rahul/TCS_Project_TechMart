@@ -31,6 +31,7 @@ PORT=5000
 MONGO_URI=mongodb://127.0.0.1:27017/techmart-pro
 JWT_SECRET=change_this_secret
 CLIENT_URL=http://localhost:5173
+CLIENT_URLS=http://localhost:5173,http://127.0.0.1:5173
 RAZORPAY_KEY_ID=rzp_test_your_key
 RAZORPAY_KEY_SECRET=your_test_secret
 RAZORPAY_WEBHOOK_SECRET=optional_webhook_secret

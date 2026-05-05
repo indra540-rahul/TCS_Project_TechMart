@@ -124,6 +124,7 @@ Project documents are available in [documentation](./documentation/README.md).
 
 - [Client README](./client/README.md)
 - [Server README](./server/README.md)
+- [Deployment Guide](./documentation/deployment-guide.md)
 - [Software Requirement Specification](./documentation/software-requirement-specification.md)
 - [Development Plan](./documentation/development-plan.md)
 - [Requirements Traceability Matrix](./documentation/requirements-traceability-matrix.md)
