@@ -30,10 +30,31 @@ const allowedOrigins = [
   .map((origin) => origin?.trim())
   .filter(Boolean);
 
+const isAllowedVercelOrigin = (origin) => {
+  try {
+    const { hostname } = new URL(origin);
+
+    return (
+      hostname === "tcs-project-tech-mart.vercel.app" ||
+      hostname === "tcs-project-tech-mart-rahul-chaurasiyas-projects-e8ee30d5.vercel.app" ||
+      hostname.startsWith("tcs-project-tech-mart-") ||
+      hostname.startsWith("tcs-project-tech-git-")
+    ) && hostname.endsWith(".vercel.app");
+  } catch {
+    return false;
+  }
+};
+
 app.use(
   cors({
     origin(origin, callback) {
-      if (!origin || allowedOrigins.includes(origin) || origin === "http://localhost:5173") {
+      if (
+        !origin ||
+        allowedOrigins.includes(origin) ||
+        origin === "http://localhost:5173" ||
+        origin === "http://127.0.0.1:5173" ||
+        isAllowedVercelOrigin(origin)
+      ) {
         return callback(null, true);
       }
 
