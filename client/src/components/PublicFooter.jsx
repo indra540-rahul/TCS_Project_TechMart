@@ -1,4 +1,4 @@
-import { Headphones, Mail, MapPin, PhoneCall } from "lucide-react";
+import { Mail, MapPin, PhoneCall } from "lucide-react";
 
 const PublicFooter = () => {
   return (
@@ -6,16 +6,11 @@ const PublicFooter = () => {
       <div className="grid w-full gap-10 px-4 py-12 sm:px-6 md:grid-cols-[1.2fr_0.8fr_0.8fr] lg:px-8">
         <div>
           <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center bg-[linear-gradient(135deg,#1d4ed8,#06b6d4)] text-white">
-              <Headphones size={21} />
-            </div>
-
-            <div>
-              <p className="text-[11px] font-black uppercase tracking-[0.28em] text-cyan-300">
-                TechMart Pro
-              </p>
-              <p className="text-lg font-black text-white">Electronics Store</p>
-            </div>
+            <img
+              src="/logo-techmart-pro.png"
+              alt="TechMart Pro"
+              className="h-14 w-auto rounded-2xl"
+            />
           </div>
 
           <h3 className="mt-6 max-w-md text-2xl font-black leading-tight tracking-tight">

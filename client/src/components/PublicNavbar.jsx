@@ -1,7 +1,6 @@
 import {
   ChevronDown,
   Grid2x2,
-  Headphones,
   LifeBuoy,
   LogOut,
   Menu,
@@ -30,20 +29,12 @@ const PublicNavbar = ({ cartCount: cartCountProp }) => {
   return (
     <header className="sticky top-0 z-50 -mx-4 border-b border-white/10 bg-[linear-gradient(135deg,#006ECD_0%,#00FFA6_40%,#5FFBF1_100%)] text-white backdrop-blur-xl sm:-mx-6 lg:-mx-8">
       <div className="flex w-full items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        <Link to="/" className="flex items-center gap-3">
-          <div className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl bg-slate-950 text-white shadow-[0_16px_30px_rgba(15,23,42,0.22)]">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,#38bdf8,transparent_45%)]" />
-            <Headphones size={21} className="relative" />
-          </div>
-
-          <div>
-            <p className="text-[12px] font-black uppercase tracking-[0.3em] text-blue-700">
-              TechMart Pro
-            </p>
-            <p className="text-lg font-black tracking-tight text-slate-200">
-              Electronics Store
-            </p>
-          </div>
+        <Link to="/" className="ml-2 flex items-center gap-3 sm:ml-3">
+          <img
+            src="/logo-techmart-pro.png"
+            alt="TechMart Pro"
+            className="h-10 w-auto rounded-2xl sm:h-11"
+          />
         </Link>
 
         <nav className="hidden items-center rounded-full border border-slate-200 bg-slate-50/80 p-1 text-sm font-bold text-slate-600 lg:flex">

@@ -57,7 +57,11 @@ const Sidebar = ({ isOpen, onClose }) => {
       >
         <div className="mb-8 flex items-start justify-between gap-4">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.34em] text-cyan-600">TechMart Pro</p>
+            <img
+              src="/logo-techmart-pro.png"
+              alt="TechMart Pro"
+              className="h-12 w-auto rounded-2xl"
+            />
             <h1 className="mt-2 text-2xl font-black tracking-tight text-slate-950">Dashboard</h1>
             {/* <p className="mt-2 max-w-xs text-sm leading-6 text-slate-600">
               Inventory, orders, customer flow, and admin control in one responsive workspace.
